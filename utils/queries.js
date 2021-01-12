@@ -18,9 +18,9 @@ connection.connect(err => {
 });
 // queries 
 const viewDepartments = () => {
-    console.log('----------------------');
-    console.log('Showing Departments...');
-    console.log('----------------------');
+    console.log('-------------------');
+    console.log('Showing Departments');
+    console.log('-------------------');
 
     connection.query(
         'SELECT * FROM departments',
