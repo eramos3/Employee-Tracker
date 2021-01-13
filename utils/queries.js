@@ -24,7 +24,7 @@ const viewDepartments = () => {
 
     connection.query(
         'SELECT * FROM departments',
-        function(err, res) {
+        function (err, res) {
             if (err) throw err;
             console.table(res);
             promptUser();
@@ -32,4 +32,19 @@ const viewDepartments = () => {
     );
 };
 
-module.exports = viewDepartments;
+const viewRoles = () => {
+    console.log('------------');
+    console.log('Showing Roles');
+    console.log('------------');
+
+    connection.query(
+        'SELECT roles.id, role_title, department, salary FROM roles LEFT JOIN departments ON roles.department_id = departments.id',
+        function (err, res) {
+            if (err) throw err;
+            console.table(res);
+            promptUser();
+        }
+    );
+};
+
+module.exports = { viewDepartments, viewRoles };
