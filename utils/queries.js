@@ -241,4 +241,56 @@ const addEmployee = () => {
         ;
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee };
+const updateEmployeeRole = () => {
+    console.log('----------------------');
+    console.log('Updating Employee Role');
+    console.log('----------------------');
+    return inquirer
+        .prompt([
+            {
+                type: 'number',
+                name: 'id',
+                message: "Enter employee id",
+                validate: id => {
+                    if (id) {
+                        return true;
+                    } else {
+                        console.log("Please enter employee id");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'number',
+                name: 'role_id',
+                message: "Enter employee's new role id",
+                validate: id => {
+                    if (id) {
+                        return true;
+                    } else {
+                        console.log("Please enter role id");
+                        return false;
+                    }
+                }
+            }
+        ])
+        .then(updateRole => {
+
+            const sql = 'UPDATE employees SET role_id = ? WHERE id = ?';
+            const params = [updateRole.role_id, updateRole.id];
+            connection.query(sql, params,
+                function (err, res) {
+                    if (err) throw err;
+                    console.log(res);
+                    console.log('<----- Employee Role has been updated ----->');
+                    viewEmployees();
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+
+module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole };
