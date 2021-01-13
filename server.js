@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const {viewDepartments,viewRoles,addDepartment,addRole} = require("./utils/queries");
+const { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee } = require("./utils/queries");
 
 promptUser = () => {
     return inquirer.prompt([
