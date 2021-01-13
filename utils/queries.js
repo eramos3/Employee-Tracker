@@ -1,5 +1,4 @@
 const cTable = require('console.table');
-// get the client
 const mysql = require('mysql2');
 const inquirer = require("inquirer");
 
