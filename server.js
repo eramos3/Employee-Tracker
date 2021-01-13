@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const {viewDepartments,viewRoles} = require("./utils/queries");
+const {viewDepartments,viewRoles,addDepartment,addRole} = require("./utils/queries");
 
 promptUser = () => {
     return inquirer.prompt([
@@ -7,7 +7,7 @@ promptUser = () => {
             type: 'list',
             message: 'Please select an option.',
             name: 'action',
-            choices: ['View Departments', 'View Roles', 'View Employees', 'Add Department', 'Add Role', 'Add Employee', 'Update Employee Role', 'Update Employee Manager, Delete Employee']
+            choices: ['View Departments', 'View Roles', 'View Employees', 'Add Department', 'Add Role', 'Add Employee', 'Update Employee Role', 'Update Employee Manager', 'Delete Employee']
         }
     ])
         .then(choice => {
