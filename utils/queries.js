@@ -281,7 +281,6 @@ const updateEmployeeRole = () => {
             connection.query(sql, params,
                 function (err, res) {
                     if (err) throw err;
-                    console.log(res);
                     console.log('<----- Employee Role has been updated ----->');
                     viewEmployees();
                 }
@@ -331,7 +330,6 @@ const updateEmployeeManager = () => {
             connection.query(sql, params,
                 function (err, res) {
                     if (err) throw err;
-                    console.log(res);
                     console.log('<----- Employee manager has been updated ----->');
                     viewEmployees();
                 }
@@ -342,4 +340,114 @@ const updateEmployeeManager = () => {
         })
 }
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager };
+const deleteDepartment = () => {
+    console.log('-------------------------');
+    console.log('Deleting Department');
+    console.log('-------------------------');
+    return inquirer
+        .prompt([
+            {
+                type: 'number',
+                name: 'id',
+                message: 'Type in corresponding department ID that you want to delete',
+                validate: deptId => {
+                    if (deptId) {
+                        return true;
+                    } else {
+                        console.log("Enter department ID");
+                        return false;
+                    }
+                }
+            }
+        ])
+        .then(deleteDept => {
+            const sql = 'DELETE FROM departments WHERE id = ?';
+            const params = [deleteDept.id];
+            connection.query(sql, params,
+                function (err, res) {
+                    if (err) throw err;
+                    console.log('<----- Department has been deleted ----->');
+                    viewDepartments();
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+const deleteRole = () => {
+    console.log('-------------');
+    console.log('Deleting Role');
+    console.log('-------------');
+    return inquirer
+        .prompt([
+            {
+                type: 'number',
+                name: 'id',
+                message: 'Type in role ID that will be deleted',
+                validate: roleId => {
+                    if (roleId) {
+                        return true;
+                    } else {
+                        console.log("Enter role ID");
+                        return false;
+                    }
+                }
+            },
+        ])
+        .then(deleteRole => {
+            const sql = 'DELETE FROM roles WHERE id = ?';
+            const params = [deleteRole.id];
+            connection.query(sql, params,
+                function (err, res) {
+                    if (err) throw err;
+                    console.log(res.affectedRows);
+                    console.log('<----- Role has been deleted ----->');
+                    viewDepartments();
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+const deleteEmployee = () => {
+    console.log('-------------');
+    console.log('Deleting Employee');
+    console.log('-------------');
+    return inquirer
+        .prompt([
+            {
+                type: 'number',
+                name: 'id',
+                message: 'Type in employee ID that will be deleted',
+                validate: employeeId => {
+                    if (employeeId) {
+                        return true;
+                    } else {
+                        console.log("Enter employee ID");
+                        return false;
+                    }
+                }
+            },
+        ])
+        .then(deleteEmployee => {
+            const sql = 'DELETE FROM employees WHERE id = ?';
+            const params = [deleteEmployee.id];
+            connection.query(sql, params,
+                function (err, res) {
+                    if (err) throw err;
+                    console.table(res.affectedRows);
+                    console.log('<----- Employee has been deleted ----->');
+                    viewEmployees();
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, deleteDepartment, deleteRole };
