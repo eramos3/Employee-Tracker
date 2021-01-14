@@ -341,9 +341,9 @@ const updateEmployeeManager = () => {
 }
 
 const deleteDepartment = () => {
-    console.log('-------------------------');
+    console.log('-------------------');
     console.log('Deleting Department');
-    console.log('-------------------------');
+    console.log('-------------------');
     return inquirer
         .prompt([
             {
@@ -402,9 +402,8 @@ const deleteRole = () => {
             connection.query(sql, params,
                 function (err, res) {
                     if (err) throw err;
-                    console.log(res.affectedRows);
                     console.log('<----- Role has been deleted ----->');
-                    viewDepartments();
+                    viewRoles();
                 }
             )
         })
@@ -414,9 +413,9 @@ const deleteRole = () => {
 };
 
 const deleteEmployee = () => {
-    console.log('-------------');
+    console.log('-----------------');
     console.log('Deleting Employee');
-    console.log('-------------');
+    console.log('-----------------');
     return inquirer
         .prompt([
             {
@@ -439,7 +438,6 @@ const deleteEmployee = () => {
             connection.query(sql, params,
                 function (err, res) {
                     if (err) throw err;
-                    console.table(res.affectedRows);
                     console.log('<----- Employee has been deleted ----->');
                     viewEmployees();
                 }
@@ -450,4 +448,4 @@ const deleteEmployee = () => {
         })
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, deleteDepartment, deleteRole };
+module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, deleteDepartment, deleteRole, deleteEmployee };
