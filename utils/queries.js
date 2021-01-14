@@ -292,5 +292,54 @@ const updateEmployeeRole = () => {
         })
 };
 
+const updateEmployeeManager = () => {
+    console.log('-------------------------');
+    console.log('Updating Employee Manager');
+    console.log('-------------------------');
+    return inquirer
+        .prompt([
+            {
+                type: 'number',
+                name: 'id',
+                message: "Enter employee id",
+                validate: id => {
+                    if (id) {
+                        return true;
+                    } else {
+                        console.log("Please enter employee id");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'number',
+                name: 'manager_id',
+                message: "Enter manager id",
+                validate: id => {
+                    if (id) {
+                        return true;
+                    } else {
+                        console.log("Please enter manager id");
+                        return false;
+                    }
+                }
+            }
+        ])
+        .then(updateManager => {
+            const sql = 'UPDATE employees SET manager_id = ? WHERE id = ?';
+            const params = [updateManager.manager_id, updateManager.id];
+            connection.query(sql, params,
+                function (err, res) {
+                    if (err) throw err;
+                    console.log(res);
+                    console.log('<----- Employee manager has been updated ----->');
+                    viewEmployees();
+                }
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole };
+module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager };
