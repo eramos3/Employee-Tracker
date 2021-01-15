@@ -448,4 +448,11 @@ const deleteEmployee = () => {
         })
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, deleteDepartment, deleteRole, deleteEmployee };
+const exit = () => {
+    console.log('-------------------');
+    console.log('Exiting application');
+    console.log('-------------------');
+
+    connection.end();
+};
+module.exports = { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, deleteDepartment, deleteRole, deleteEmployee, exit };
