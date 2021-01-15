@@ -9,7 +9,9 @@
     "inquirer": "^7.3.3",
     "mysql2": "^2.2.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sql": "mysql -u root -p",
