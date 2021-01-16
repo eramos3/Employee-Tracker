@@ -2,12 +2,12 @@ const cTable = require('console.table');
 const mysql = require('mysql2');
 const inquirer = require("inquirer");
 require('dotenv').config();
-const processs = require("process");
+const process = require("process");
 // create the connection to database
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: 'root',
+    user: process.env.user,
     password: process.env.password,
     database: 'company',
 });
