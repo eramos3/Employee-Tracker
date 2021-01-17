@@ -417,6 +417,7 @@ const deleteEmployee = () => {
     console.log('-----------------');
     console.log('Deleting Employee');
     console.log('-----------------');
+
     return inquirer
         .prompt([
             {
@@ -444,9 +445,10 @@ const deleteEmployee = () => {
                 }
             )
         })
-        .catch(err => {
-            console.log(err);
-        })
+    .catch(err => {
+        console.log(err);
+    })
+
 };
 
 const exit = () => {
