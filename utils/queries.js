@@ -364,7 +364,7 @@ const deleteDepartment = () => {
                 connection.query(sql, params,
                     function (err, res) {
                         if (err) throw err;
-                        console.log('<----- {Department} has been deleted ----->');
+                        console.log('<----- Department has been deleted ----->');
                         viewDepartments();
                     }
                 )
